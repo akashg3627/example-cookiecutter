@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keda
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: keda
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: keda
+    repoURL: "https://kedacore.github.io/charts"
+    targetRevision: 2.9.3
+    helm:
+      values: |
+        resources:
+          operator:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+              ephemeral-storage: 256Mi
+          metricServer:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+              ephemeral-storage: 256Mi
+  syncPolicy:
+    automated: { }
+    syncOptions:
+      - CreateNamespace=true
