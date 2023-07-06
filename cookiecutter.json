@@ -1,6 +1,0 @@
-{
-  "project_slug": "akash",
-  "keda": {
-    "enabled": true
-  }
-}

@@ -1,0 +1,10 @@
+name: Test Template
+type: object
+schema:
+  project_name:
+    type: string
+  keda:
+    type: string
+required:
+  - project_name
+  - keda
